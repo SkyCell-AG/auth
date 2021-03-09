@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/keycloak",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "main": "dist/main.js",
   "dependencies": {
@@ -23,13 +23,20 @@
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.22.0",
-    "eslint-plugin-react-hooks": "4.2.0"
+    "eslint-plugin-react-hooks": "4.2.0",
+    "cross-env": "7.0.3",
+    "@babel/cli": "7.12.10",
+    "@babel/preset-env": "7.12.11",
+    "@babel/preset-react": "7.12.10",
+    "babel-plugin-module-resolver": "4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "rimraf dist",
+    "compile": "npm run clean && cross-env NODE_ENV=production babel src --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
   },
   "eslintConfig": {
     "extends": [
