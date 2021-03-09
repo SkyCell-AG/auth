@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+    Provider,
+} from 'react-redux'
+
+import thunk from 'redux-thunk'
+
+import {
+    combineReducers,
+    createStore,
+    applyMiddleware,
+} from 'redux'
+
+import Auth from 'auth/Auth'
+import './App.css'
+
+import reducer from 'auth/store/reducers'
+
+const store = createStore(
+    combineReducers({
+        auth: reducer,
+    }),
+    applyMiddleware(thunk),
+)
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Provider store={store}>
+            <Auth><div>test</div></Auth>
+        </Provider>
+    )
 }
 
-export default App;
+export default App
