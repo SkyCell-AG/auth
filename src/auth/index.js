@@ -2,5 +2,10 @@ export {
     default,
 } from './Auth'
 
-export useJWTToken from 'auth/hooks/useJWTToken'
-export auth from 'auth/store/reducers'
+export {
+    default as useJWTToken,
+} from 'auth/hooks/useJWTToken'
+
+export {
+    default as auth,
+} from 'auth/store/reducers'
