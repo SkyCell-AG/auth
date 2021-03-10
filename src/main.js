@@ -7,5 +7,5 @@ export {
 } from 'auth/hooks/useJWTToken'
 
 export {
-    default as useAuthContext,
-} from 'auth/hooks/useAuthContext'
+    default as useAuth,
+} from 'auth/hooks/useAuth'

@@ -1,9 +1,16 @@
 import keycloak from 'keycloak'
 
-const getMicrosoftToken = (setMicrosoftData) => {
+export const GET_MICROSOFT_TOKEN = 'GET_MICROSOFT_TOKEN'
+
+const getMicrosoftToken = (dispatch) => {
     return keycloak.getActiveDirectory()
         .then((microsoftData) => {
-            setMicrosoftData(microsoftData)
+            dispatch({
+                type: GET_MICROSOFT_TOKEN,
+                payload: {
+                    microsoftData,
+                },
+            })
         })
 }
 

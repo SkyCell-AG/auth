@@ -1,7 +1,7 @@
 import React, {
     useEffect,
-    useState,
     useMemo,
+    useReducer,
 } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -12,39 +12,84 @@ import {
     PRISTIN,
     PENDING,
     FAILURE,
+    SUCCESS,
 } from 'utils/requestStatuses'
+import createReducer from 'utils/createReducer'
+import generateAsyncActions from 'utils/generateAsyncActions'
 
 import AuthContext from './AuthContext'
-import init from './utils/init'
+import init from './init'
+import {
+    GET_MICROSOFT_TOKEN,
+} from './utils/getMicrosftToken'
 
 const propTypes = {
     children: PropTypes.element.isRequired,
 }
 
+const INIT_SESSION = generateAsyncActions('INIT_SESSION')
+
+const initState = {
+    status: PRISTIN,
+    user: null,
+}
+
+const reducer = createReducer(
+    {
+        [GET_MICROSOFT_TOKEN]: (state, {
+            payload: {
+                microsoftData,
+            },
+        }) => {
+            return {
+                ...state,
+                microsoftData,
+            }
+        },
+        [INIT_SESSION.pending]: (state) => {
+            return {
+                ...state,
+                status: PENDING,
+            }
+        },
+        [INIT_SESSION.failure]: (state) => {
+            return {
+                ...state,
+                status: FAILURE,
+            }
+        },
+        [INIT_SESSION.success]: (state, {
+            payload: {
+                user,
+            },
+        }) => {
+            return {
+                ...state,
+                user,
+                status: SUCCESS,
+            }
+        },
+    },
+    initState,
+)
+
 const Auth = ({
     children,
 }) => {
     const [
-        status,
-        setStatus,
-    ] = useState(PRISTIN)
-
-    const [
-        microsoftData,
-        setMicrosoftData,
-    ] = useState()
-
-    const [
-        user,
-        setUser,
-    ] = useState()
+        {
+            user,
+            status,
+            microsoftData,
+        },
+        dispatch,
+    ] = useReducer(
+        reducer,
+        initState,
+    )
 
     useEffect(() => {
-        init({
-            setStatus,
-            setMicrosoftData,
-            setUser,
-        })
+        init(dispatch)
     }, [])
 
     const contextValue = useMemo(() => {
