@@ -1,8 +1,8 @@
 import keycloak from 'keycloak'
 import generateAsyncActions from 'utils/generateAsyncActions'
 
-import getRoles from 'auth/utils/getRoles'
-import getMicrosoftToken from 'auth/utils/getMicrosftToken'
+import getRoles from 'auth/getRoles'
+import getMicrosoftToken from 'auth/getMicrosftToken'
 
 const INIT_SESSION = generateAsyncActions('INIT_SESSION')
 

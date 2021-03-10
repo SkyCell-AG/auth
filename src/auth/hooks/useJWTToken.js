@@ -1,14 +1,11 @@
-import {
-    useSelector,
-} from 'react-redux'
 import get from 'lodash/get'
 
+import useAuth from './useAuth'
+
 const useJWTToken = () => {
-    const user = useSelector(({
-        auth,
-    }) => {
-        return auth.user
-    })
+    const {
+        user,
+    } = useAuth()
 
     return get(user, 'token')
 }
