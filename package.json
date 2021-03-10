@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/keycloak",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "private": false,
   "main": "dist/main.js",
   "dependencies": {
@@ -12,9 +12,6 @@
     "react-scripts": "4.0.3",
     "web-vitals": "1.1.0",
     "axios": "0.21.1",
-    "react-redux": "7.2.2",
-    "redux": "4.0.5",
-    "redux-thunk": "2.3.0",
     "lodash": "4.17.20",
     "prop-types": "15.7.2",
     "@skycell-ag/shared-components": "0.2.11",

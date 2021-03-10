@@ -1,10 +1,9 @@
 import React, {
     useEffect,
+    useState,
+    useMemo,
 } from 'react'
 import PropTypes from 'prop-types'
-import {
-    useDispatch, useSelector,
-} from 'react-redux'
 import {
     LoadingScreen,
 } from '@skycell-ag/shared-components'
@@ -14,9 +13,9 @@ import {
     PENDING,
     FAILURE,
 } from 'utils/requestStatuses'
-import {
-    init,
-} from 'auth/store/actions/init'
+
+import AuthContext from './AuthContext'
+import init from './utils/init'
 
 const propTypes = {
     children: PropTypes.element.isRequired,
@@ -25,14 +24,40 @@ const propTypes = {
 const Auth = ({
     children,
 }) => {
-    const dispatch = useDispatch()
-    const status = useSelector((state) => {
-        return state.auth.status
-    })
+    const [
+        status,
+        setStatus,
+    ] = useState(PRISTIN)
+
+    const [
+        microsoftData,
+        setMicrosoftData,
+    ] = useState()
+
+    const [
+        user,
+        setUser,
+    ] = useState()
 
     useEffect(() => {
-        dispatch(init())
-    }, [dispatch])
+        init({
+            setStatus,
+            setMicrosoftData,
+            setUser,
+        })
+    }, [])
+
+    const contextValue = useMemo(() => {
+        return {
+            user,
+            status,
+            microsoftData,
+        }
+    }, [
+        microsoftData,
+        status,
+        user,
+    ])
 
     if (status === PRISTIN || status === PENDING) {
         return <LoadingScreen />
@@ -47,9 +72,9 @@ const Auth = ({
     }
 
     return (
-        <>
+        <AuthContext.Provider value={contextValue}>
             {children}
-        </>
+        </AuthContext.Provider>
     )
 }
 
