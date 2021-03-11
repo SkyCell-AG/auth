@@ -2,9 +2,10 @@ import {
     useEffect,
     useReducer,
 } from 'react'
+import keycloak from 'keycloak'
 
 import createReducer from 'utils/createReducer'
-import {
+import getMicrosoftToken, {
     GET_MICROSOFT_TOKEN,
 } from 'auth/getMicrosftToken'
 import {
@@ -14,9 +15,12 @@ import {
     SUCCESS,
 } from 'utils/requestStatuses'
 import generateAsyncActions from 'utils/generateAsyncActions'
-import init from 'auth/init'
+import getRoles from 'auth/getRoles'
 
 const INIT_SESSION = generateAsyncActions('INIT_SESSION')
+const SESSION_TIME = 1000 * 60 * 3
+
+let sessionTimeOutId
 
 const initState = {
     status: PRISTIN,
@@ -76,7 +80,70 @@ const useAuthentication = () => {
     )
 
     useEffect(() => {
-        init(dispatch)
+        dispatch({
+            type: INIT_SESSION.pending,
+        })
+
+        keycloak
+            .init({
+                promiseType: 'native',
+                onLoad: 'login-required',
+            })
+            .then(() => {
+                return keycloak.loadUserProfile()
+            })
+            .then((userData) => {
+                if (sessionTimeOutId) {
+                    clearTimeout(sessionTimeOutId)
+                }
+
+                sessionTimeOutId = setTimeout(
+                    () => {
+                        dispatch({
+                            type: INIT_SESSION.pending,
+                        })
+
+                        keycloak.updateToken(SESSION_TIME)
+                            .then(() => {
+                                dispatch({
+                                    type: INIT_SESSION.success,
+                                })
+                            })
+                            .catch((err) => {
+                                dispatch({
+                                    type: INIT_SESSION.failure,
+                                    err,
+                                })
+                            })
+                    },
+                    keycloak.idTokenParsed.exp * 1000 - (new Date()).getTime() - 4000,
+                )
+
+                return getRoles({
+                    userId: keycloak.idTokenParsed.sub,
+                    token: keycloak.token,
+                    user: userData,
+                })
+            })
+            .then((resp) => {
+                dispatch({
+                    type: INIT_SESSION.success,
+                    payload: {
+                        user: {
+                            ...resp.user,
+                            role: resp.roles,
+                            token: keycloak.token,
+                        },
+                    },
+                })
+                getMicrosoftToken(dispatch)
+            })
+            .catch((err) => {
+                dispatch({
+                    type: INIT_SESSION.failure,
+                    err,
+                })
+            })
     }, [])
 
     return {
