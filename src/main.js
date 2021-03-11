@@ -7,5 +7,5 @@ export {
 } from 'auth/hooks/useJWTToken'
 
 export {
-    default as auth,
-} from 'auth/store/reducers'
+    default as useAuth,
+} from 'auth/hooks/useAuth'

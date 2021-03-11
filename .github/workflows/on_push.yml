@@ -18,6 +18,8 @@ jobs:
         with:
           fetch-depth: 0
       - uses: bahmutov/npm-install@v1
+      - name: Lint
+        run: npm run lint
       - name: Compile
         run: npm run compile
       - name: Publish to npm
