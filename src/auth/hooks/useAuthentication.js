@@ -18,6 +18,7 @@ import generateAsyncActions from 'utils/generateAsyncActions'
 import getRoles from 'auth/getRoles'
 
 const INIT_SESSION = generateAsyncActions('INIT_SESSION')
+const UPDATE_SESSION = generateAsyncActions('UPDATE_SESSION')
 const SESSION_TIME = 1000 * 60 * 3
 
 let sessionTimeOutId
@@ -62,6 +63,24 @@ const reducer = createReducer(
                 status: SUCCESS,
             }
         },
+        [UPDATE_SESSION.failure]: (state) => {
+            return {
+                ...state,
+                status: FAILURE,
+            }
+        },
+        [UPDATE_SESSION.success]: (state) => {
+            return {
+                ...state,
+                status: SUCCESS,
+            }
+        },
+        [UPDATE_SESSION.pending]: (state) => {
+            return {
+                ...state,
+                status: PENDING,
+            }
+        },
     },
     initState,
 )
@@ -100,18 +119,18 @@ const useAuthentication = () => {
                 sessionTimeOutId = setTimeout(
                     () => {
                         dispatch({
-                            type: INIT_SESSION.pending,
+                            type: UPDATE_SESSION.pending,
                         })
 
                         keycloak.updateToken(SESSION_TIME)
                             .then(() => {
                                 dispatch({
-                                    type: INIT_SESSION.success,
+                                    type: UPDATE_SESSION.success,
                                 })
                             })
                             .catch((err) => {
                                 dispatch({
-                                    type: INIT_SESSION.failure,
+                                    type: UPDATE_SESSION.failure,
                                     err,
                                 })
                             })
