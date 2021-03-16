@@ -9,3 +9,7 @@ export {
 export {
     default as useAuth,
 } from 'auth/hooks/useAuth'
+
+export {
+    default as useUserAvatar,
+} from 'auth/hooks/useUserAvatar'
