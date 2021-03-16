@@ -32,9 +32,7 @@ const useUserAvatar = () => {
         token,
     ])
 
-    return {
-        state,
-    }
+    return state
 }
 
 export default useUserAvatar
