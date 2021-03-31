@@ -11,8 +11,9 @@ import {
     PENDING,
     FAILURE,
 } from 'utils/requestStatuses'
-import useAuthentication from './hooks/useAuthentication'
 
+import userData from './user'
+import useAuthentication from './hooks/useAuthentication'
 import AuthContext from './AuthContext'
 
 const propTypes = {
@@ -39,6 +40,8 @@ const Auth = ({
         status,
         user,
     ])
+
+    userData.data = user
 
     if (status === PRISTIN || status === PENDING) {
         return <LoadingScreen />
