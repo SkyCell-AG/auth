@@ -15,5 +15,9 @@ export {
 } from 'auth/hooks/useUserAvatar'
 
 export {
+    default as useUserRoles,
+} from 'auth/hooks/useUserRoles'
+
+export {
     default as user,
 } from 'auth/user'
