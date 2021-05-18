@@ -21,3 +21,7 @@ export {
 export {
     default as user,
 } from 'auth/user'
+
+export {
+    default as logout,
+} from 'auth/logout'
