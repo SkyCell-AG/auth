@@ -25,3 +25,7 @@ export {
 export {
     default as logout,
 } from 'auth/logout'
+
+export {
+    default as useAllowed,
+} from 'auth/hooks/useAllowed'
