@@ -1,35 +1,35 @@
 {
   "name": "@skycell-ag/auth",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": false,
   "main": "dist/main.js",
   "dependencies": {
+    "@skycell-ag/shared-components": "0.3.0",
     "axios": "0.21.1",
-    "lodash": "4.17.20",
-    "@skycell-ag/shared-components": "0.3.0"
+    "lodash": "4.17.21"
   },
   "peerDependencies": {
+    "prop-types": "15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "prop-types": "15.7.2"
+    "react-scripts": "4.0.3"
   },
   "devDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "prop-types": "15.7.2",
+    "@babel/cli": "7.12.1",
+    "@babel/preset-env": "7.12.11",
+    "@babel/preset-react": "7.12.10",
+    "@skycell-ag/eslint-config": "1.0.3",
+    "babel-plugin-module-resolver": "4.1.0",
+    "cross-env": "7.0.3",
     "eslint-config-airbnb": "18.2.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "@babel/cli": "7.12.10",
-    "@babel/preset-env": "7.12.11",
-    "@babel/preset-react": "7.12.10",
-    "babel-plugin-module-resolver": "4.1.0",
-    "cross-env": "7.0.3",
-    "@skycell-ag/eslint-config": "1.0.3"
+    "prop-types": "15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
