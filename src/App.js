@@ -8,8 +8,6 @@ function App() {
         data: avatar,
     } = useUserAvatar()
 
-    console.log(avatar)
-
     return (
         <div>
             <img
