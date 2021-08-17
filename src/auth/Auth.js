@@ -2,9 +2,6 @@ import React, {
     useMemo,
 } from 'react'
 import PropTypes from 'prop-types'
-import {
-    LoadingScreen,
-} from '@skycell-ag/shared-components'
 
 import {
     PRISTIN,
@@ -44,7 +41,7 @@ const Auth = ({
     userData.data = user
 
     if (status === PRISTIN || status === PENDING) {
-        return <LoadingScreen />
+        return <div>Loading...</div>
     }
 
     if (status === FAILURE) {

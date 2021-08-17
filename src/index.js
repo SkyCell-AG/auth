@@ -1,11 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import {
+    QueryClientProvider,
+    QueryClient,
+} from 'react-query'
+import Auth from 'auth/Auth'
+
 import App from './App'
+
+const queryClient = new QueryClient()
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <QueryClientProvider client={queryClient}>
+            <Auth>
+                <App />
+            </Auth>
+        </QueryClientProvider>
     </React.StrictMode>,
     document.getElementById('root'),
 )
