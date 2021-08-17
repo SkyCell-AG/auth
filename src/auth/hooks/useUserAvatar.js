@@ -1,4 +1,7 @@
 import {
+    useMemo,
+} from 'react'
+import {
     useQuery,
 } from 'react-query'
 import get from 'lodash/get'
@@ -11,13 +14,19 @@ const useUserAvatar = () => {
         microsoftData,
     } = useAuth()
 
+    const microsoftToken = useMemo(() => {
+        return microsoftData?.access_token
+    }, [microsoftData])
+
     const queryResp = useQuery([
         'getAvatar',
         {
-            token: microsoftData?.access_token,
+            microsoftToken,
         },
     ], (context) => {
-        return getAvatar(get(context, 'queryKey[1].token'))
+        return getAvatar(get(context, 'queryKey[1].microsoftToken'))
+    }, {
+        enabled: Boolean(microsoftToken),
     })
 
     return queryResp
