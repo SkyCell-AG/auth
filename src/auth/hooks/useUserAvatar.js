@@ -1,38 +1,35 @@
 import {
     useMemo,
-    useEffect,
 } from 'react'
 import {
-    useRemoteData,
-} from '@skycell-ag/shared-components'
+    useQuery,
+} from 'react-query'
+import get from 'lodash/get'
 
 import getAvatar from 'services/getAvatar'
 import useAuth from 'auth/hooks/useAuth'
 
 const useUserAvatar = () => {
-    const [
-        state,
-        load,
-    ] = useRemoteData(getAvatar)
-
     const {
         microsoftData,
     } = useAuth()
 
-    const token = useMemo(() => {
+    const microsoftToken = useMemo(() => {
         return microsoftData?.access_token
     }, [microsoftData])
 
-    useEffect(() => {
-        if (token) {
-            load(token)
-        }
-    }, [
-        load,
-        token,
-    ])
+    const queryResp = useQuery([
+        'getAvatar',
+        {
+            microsoftToken,
+        },
+    ], (context) => {
+        return getAvatar(get(context, 'queryKey[1].microsoftToken'))
+    }, {
+        enabled: Boolean(microsoftToken),
+    })
 
-    return state
+    return queryResp
 }
 
 export default useUserAvatar

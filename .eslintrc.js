@@ -17,4 +17,13 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: 'module',
     },
+    rules: {
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                peerDependencies: true,
+                devDependencies: false,
+            },
+        ],
+    },
 }

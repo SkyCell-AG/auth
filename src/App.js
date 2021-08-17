@@ -1,13 +1,21 @@
 import React from 'react'
 
-import Auth from 'auth/Auth'
+import useUserAvatar from 'auth/hooks/useUserAvatar'
 import './App.css'
 
 function App() {
+    const {
+        data: avatar,
+    } = useUserAvatar()
+
     return (
-        <Auth>
-            <div>test</div>
-        </Auth>
+        <div>
+            <img
+                src={avatar}
+                alt="user avatar"
+            />
+            test
+        </div>
     )
 }
 
