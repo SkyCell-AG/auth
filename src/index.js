@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom' // eslint-disable-line import/no-extraneous-dependencies
 import './index.css'
 import {
     QueryClientProvider,

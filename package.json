@@ -1,6 +1,6 @@
 {
   "name": "@skycell-ag/auth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "main": "dist/main.js",
   "dependencies": {
@@ -8,11 +8,10 @@
     "lodash": "4.17.21"
   },
   "peerDependencies": {
-    "prop-types": "15.7.2",
-    "react-query": "3.19.6",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3"
+    "react-query": "3.x",
+    "react": "17.x",
+    "prop-types": "15.x",
+    "react-scripts": "4.x"
   },
   "devDependencies": {
     "@babel/cli": "7.12.1",
