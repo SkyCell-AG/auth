@@ -1,11 +1,13 @@
 import keycloakService from 'utils/keycloakService'
 
 const getRoles = ({
+    token,
     user,
 }) => {
     return keycloakService({
         method: 'GET',
-        url: `user/roles`,
+        url: 'user/roles',
+        token,
     }).then((data) => {
         return {
             user,

@@ -139,6 +139,7 @@ const useAuthentication = () => {
                 )
 
                 return getRoles({
+                    token: keycloak.token,
                     user: userData,
                 })
             })
