@@ -139,8 +139,6 @@ const useAuthentication = () => {
                 )
 
                 return getRoles({
-                    userId: keycloak.idTokenParsed.sub,
-                    token: keycloak.token,
                     user: userData,
                 })
             })
