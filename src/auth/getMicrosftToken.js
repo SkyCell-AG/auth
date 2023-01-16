@@ -1,4 +1,4 @@
-import keycloak from 'keycloak'
+import keycloak from 'keycloakProxy'
 
 export const GET_MICROSOFT_TOKEN = 'GET_MICROSOFT_TOKEN'
 

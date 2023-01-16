@@ -1,5 +1,5 @@
 import axios from 'axios'
-import loadScript from 'utils/loadScript'
+import Keycloak from 'keycloak-js'
 
 const {
     REACT_APP_AUTH_SERVER_URL: url,
@@ -9,19 +9,14 @@ const {
 
 let keyCloakadapter
 
-const keycloak = new Proxy({
+const keycloakProxy = new Proxy({
     init: (...rest) => {
-        return loadScript(`${url}/js/keycloak.js`)
-            .then(() => {
-                keyCloakadapter = new window.Keycloak({
-                    url,
-                    realm,
-                    clientId,
-                })
-            })
-            .then(() => {
-                return keyCloakadapter.init(...rest)
-            })
+        keyCloakadapter = new Keycloak({
+            url,
+            realm,
+            clientId,
+        })
+        return keyCloakadapter.init(...rest)
     },
     getActiveDirectory: () => {
         return axios.get(`${keyCloakadapter.authServerUrl}/realms/skycell/broker/microsoft/token`, {
@@ -47,4 +42,4 @@ const keycloak = new Proxy({
     },
 })
 
-export default keycloak
+export default keycloakProxy
