@@ -2,7 +2,7 @@ import {
     useEffect,
     useReducer,
 } from 'react'
-import keycloak from 'keycloak'
+import keycloak from 'keycloakProxy'
 
 import createReducer from 'utils/createReducer'
 import getMicrosoftToken, {
@@ -105,7 +105,6 @@ const useAuthentication = () => {
 
         keycloak
             .init({
-                promiseType: 'native',
                 onLoad: 'login-required',
             })
             .then(() => {

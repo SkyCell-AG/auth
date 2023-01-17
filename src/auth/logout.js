@@ -1,4 +1,4 @@
-import keycloak from 'keycloak'
+import keycloak from 'keycloakProxy'
 
 const logout = () => {
     return keycloak.logout()
