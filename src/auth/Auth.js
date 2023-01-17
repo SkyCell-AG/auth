@@ -1,5 +1,6 @@
 import React, {
     useMemo,
+    useCallback,
 } from 'react'
 import PropTypes from 'prop-types'
 
@@ -9,6 +10,7 @@ import {
     FAILURE,
 } from 'utils/requestStatuses'
 
+import logout from './logout'
 import userData from './user'
 import useAuthentication from './hooks/useAuthentication'
 import AuthContext from './AuthContext'
@@ -38,6 +40,10 @@ const Auth = ({
         user,
     ])
 
+    const logoutHandler = useCallback(() => {
+        logout()
+    }, [])
+
     userData.data = user
 
     if (status === PRISTIN || status === PENDING) {
@@ -48,6 +54,12 @@ const Auth = ({
         return (
             <div>
                 An Error happened during login
+                <button
+                    type="button"
+                    onClick={logoutHandler}
+                >
+                    LOGOUT
+                </button>
             </div>
         )
     }
