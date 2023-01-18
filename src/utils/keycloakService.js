@@ -13,7 +13,7 @@ const keycloakService = (params) => {
     const modifiedQuery = flow([
         defaultRequest,
         bearerToken,
-        addHostUrl(`${apiUrl}/keycloak-new/v1`),
+        addHostUrl(`${apiUrl}/keycloak/v1`),
     ])(Axios)
 
     return modifiedQuery(params)
