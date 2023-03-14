@@ -19,7 +19,7 @@ const keycloakProxy = new Proxy({
         return keyCloakadapter.init(...rest)
     },
     getActiveDirectory: () => {
-        return axios.get(`${keyCloakadapter.authServerUrl}/realms/skycell/broker/microsoft/token`, {
+        return axios.get(`${keyCloakadapter.authServerUrl}/realms/${keyCloakadapter.realm}/broker/microsoft/token`, {
             headers: {
                 Authorization: `Bearer ${keyCloakadapter.token}`,
             },
