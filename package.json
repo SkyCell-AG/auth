@@ -10,14 +10,14 @@
   },
   "peerDependencies": {
     "react-query": "3.x",
-    "react": "17.x",
+    "react": "18.x",
     "prop-types": "15.x",
     "react-scripts": "4.x"
   },
   "devDependencies": {
     "@babel/cli": "7.12.1",
     "@babel/preset-env": "7.12.11",
-    "@babel/preset-react": "7.12.10",
+    "@babel/preset-react": "7.23.3",
     "@skycell-ag/eslint-config": "1.0.3",
     "babel-plugin-module-resolver": "4.1.0",
     "cross-env": "7.0.3",
@@ -27,8 +27,8 @@
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "prop-types": "15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-scripts": "4.0.3"
   },
   "scripts": {

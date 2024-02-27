@@ -1,5 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom' // eslint-disable-line import/no-extraneous-dependencies
+import {
+    createRoot,
+} from 'react-dom/client' // eslint-disable-line import/no-extraneous-dependencies
 import './index.css'
 import {
     QueryClientProvider,
@@ -9,15 +11,17 @@ import Auth from 'auth/Auth'
 
 import App from './App'
 
+const container = document.getElementById('root')
+const root = createRoot(container)
+
 const queryClient = new QueryClient()
 
-ReactDOM.render(
-    <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <Auth>
+root.render(
+    <QueryClientProvider client={queryClient}>
+        <Auth>
+            <React.StrictMode>
                 <App />
-            </Auth>
-        </QueryClientProvider>
-    </React.StrictMode>,
-    document.getElementById('root'),
+            </React.StrictMode>
+        </Auth>
+    </QueryClientProvider>,
 )
