@@ -9,7 +9,7 @@
     "keycloak-js": "20.0.2"
   },
   "peerDependencies": {
-    "react-query": "3.x",
+    "react-query": ">=4.x",
     "react": "18.x",
     "prop-types": "15.x",
     "react-scripts": "4.x"
