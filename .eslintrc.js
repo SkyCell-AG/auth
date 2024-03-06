@@ -22,7 +22,7 @@ module.exports = {
             'error',
             {
                 peerDependencies: true,
-                devDependencies: false,
+                devDependencies: true,
             },
         ],
     },
