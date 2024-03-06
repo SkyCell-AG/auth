@@ -4,7 +4,7 @@
   "private": false,
   "main": "dist/main.js",
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "^0.21.4",
     "keycloak-js": "20.0.2",
     "lodash": "4.17.21",
     "react": "18.x",
@@ -14,21 +14,21 @@
     "prop-types": "15.x",
     "react": "18.x",
     "react-query": ">=4.x",
-    "react-scripts": "4.x"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.1",
+    "@babel/cli": "^7.23.9",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.23.3",
     "@skycell-ag/eslint-config": "2.0.0",
-    "babel-plugin-module-resolver": "4.1.0",
+    "babel-plugin-module-resolver": "^5.0.0",
     "cross-env": "7.0.3",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
     "prop-types": "15.7.2",
-    "react-scripts": "4.0.3"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
